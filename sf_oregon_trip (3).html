@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1E3D2F">
+<title>SF ⇄ Oregon — Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fir:#1E3D2F;
+    --fir-dark:#12261C;
+    --rust:#AE4B2C;
+    --cream:#F1E9D8;
+    --paper:#FAF5E9;
+    --gold:#C89B3C;
+    --slate:#33475B;
+    --ink:#20201C;
+    --line: rgba(32,32,28,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Libre Franklin', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+
+  .display{
+    font-family:'Bebas Neue', sans-serif;
+    letter-spacing:0.03em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  .topo{
+    position:absolute; inset:0;
+    opacity:0.14;
+    pointer-events:none;
+    background-image:
+      repeating-radial-gradient(circle at 15% 25%, transparent 0, transparent 18px, rgba(241,233,216,0.5) 19px, transparent 20px),
+      repeating-radial-gradient(circle at 85% 70%, transparent 0, transparent 24px, rgba(241,233,216,0.4) 25px, transparent 26px);
+  }
+
+  .hero{
+    position:relative;
+    background:var(--fir-dark);
+    color:var(--cream);
+    padding:0 0 0 0;
+    overflow:hidden;
+  }
+  .hero-top{
+    padding: 28px 20px 18px;
+    text-align:center;
+    position:relative;
+  }
+  .badge-ring{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:112px;height:112px;
+    border-radius:50%;
+    border:3px solid var(--gold);
+    outline:1px solid rgba(200,155,60,0.4);
+    outline-offset:5px;
+    margin-bottom:14px;
+    position:relative;
+  }
+  .badge-ring::before{
+    content:"";
+    position:absolute; inset:8px;
+    border-radius:50%;
+    border:1px dashed rgba(200,155,60,0.55);
+  }
+  .badge-ring span{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:13px;
+    letter-spacing:0.15em;
+    text-align:center;
+    line-height:1.25;
+    color:var(--gold);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:0 0 10px;
+  }
+  h1.trip-title{
+    margin:0;
+    font-size:clamp(44px, 11vw, 92px);
+    line-height:0.92;
+    color:var(--cream);
+  }
+  .trip-title small{
+    display:block;
+    font-size:0.34em;
+    color:var(--gold);
+    letter-spacing:0.12em;
+    margin-top:6px;
+  }
+  .trip-dates{
+    margin:14px 0 0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.08em;
+    color:rgba(241,233,216,0.8);
+  }
+
+  .hero-photo-wrap{
+    position:relative;
+    margin:22px auto 0;
+    max-width:920px;
+    padding:0 20px;
+  }
+  .postcard{
+    position:relative;
+    background:var(--paper);
+    padding:12px 12px 40px;
+    box-shadow:0 18px 40px rgba(0,0,0,0.45);
+    transform:rotate(-1.1deg);
+  }
+  .postcard img{
+    width:100%;
+    height:clamp(220px, 42vw, 440px);
+    object-fit:cover;
+    filter:saturate(1.02) contrast(1.03);
+  }
+  .postcard figcaption{
+    position:absolute;
+    left:12px; right:12px; bottom:12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.05em;
+    color:var(--slate);
+    display:flex;
+    justify-content:space-between;
+  }
+  .stamp{
+    position:absolute;
+    top:-16px; right:-10px;
+    width:86px; height:86px;
+    border-radius:50%;
+    background:var(--rust);
+    color:var(--cream);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    font-family:'Bebas Neue', sans-serif;
+    font-size:13px;
+    line-height:1.15;
+    letter-spacing:0.04em;
+    transform:rotate(9deg);
+    box-shadow:0 6px 14px rgba(0,0,0,0.35);
+    border:2px dashed rgba(250,245,233,0.6);
+  }
+
+  .stat-strip{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:0;
+    margin:34px auto 0;
+    max-width:920px;
+    border-top:1px solid rgba(200,155,60,0.35);
+  }
+  .stat{
+    flex:1 1 110px;
+    text-align:center;
+    padding:18px 10px;
+    border-right:1px solid rgba(200,155,60,0.25);
+  }
+  .stat:last-child{border-right:none;}
+  .stat .num{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:34px;
+    color:var(--gold);
+    display:block;
+  }
+  .stat .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:rgba(241,233,216,0.75);
+  }
+  .hero-spacer{height:38px;}
+
+  .signpost{
+    position:sticky; top:0; z-index:40;
+    background:var(--fir);
+    border-bottom:3px solid var(--gold);
+  }
+  .signpost-inner{
+    max-width:1040px; margin:0 auto;
+    display:flex; align-items:center;
+    overflow-x:auto;
+    padding:0 14px;
+    scrollbar-width:none;
+  }
+  .signpost-inner::-webkit-scrollbar{display:none;}
+  .signpost a{
+    flex:0 0 auto;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.06em;
+    color:var(--cream);
+    text-decoration:none;
+    padding:12px 14px;
+    white-space:nowrap;
+    border-right:1px solid rgba(241,233,216,0.15);
+    opacity:0.85;
+  }
+  .signpost a:hover{opacity:1; color:var(--gold);}
+
+  section{
+    max-width:920px;
+    margin:0 auto;
+    padding:56px 20px;
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:8px;
+  }
+  .section-head .display{
+    font-size:clamp(30px,6vw,44px);
+    color:var(--fir);
+  }
+  .section-head .mono{
+    font-size:12px;
+    color:var(--rust);
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+  }
+  .section-sub{
+    font-size:15px;
+    color:var(--slate);
+    max-width:56ch;
+    margin:0 0 34px;
+  }
+  .rule{
+    height:1px;
+    background:repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 12px);
+    margin: 0 0 34px;
+  }
+
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:16px;
+  }
+  .lcard{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-left:4px solid var(--rust);
+    padding:18px 18px 16px;
+  }
+  .lcard h3{
+    display:flex; align-items:center; gap:8px;
+    margin:0 0 10px;
+    font-family:'Bebas Neue', sans-serif;
+    font-size:20px;
+    letter-spacing:0.04em;
+    color:var(--fir);
+  }
+  .lcard .icon{font-size:18px;}
+  .lcard ul{margin:0; padding:0; list-style:none;}
+  .lcard li{
+    padding:8px 0;
+    border-top:1px dotted var(--line);
+    font-size:13.5px;
+    line-height:1.5;
+  }
+  .lcard li:first-child{border-top:none;}
+  .lcard .row-title{
+    font-weight:600;
+    color:var(--ink);
+    display:flex; justify-content:space-between; gap:8px;
+  }
+  .lcard .row-detail{
+    color:var(--slate);
+    margin-top:2px;
+  }
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:9.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:2px 7px;
+    border-radius:2px;
+    white-space:nowrap;
+    height:fit-content;
+  }
+  .tag.done{background:var(--fir); color:var(--cream);}
+  .tag.todo{background:var(--gold); color:var(--fir-dark);}
+  .tag.paid{background:var(--rust); color:var(--cream);}
+
+  .notes-box{
+    margin-top:16px;
+    background:var(--fir-dark);
+    color:var(--cream);
+    padding:18px 20px;
+    font-size:13.5px;
+    line-height:1.7;
+  }
+  .notes-box h3{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:18px;
+    color:var(--gold);
+    margin:0 0 10px;
+    letter-spacing:0.05em;
+  }
+  .notes-box ul{margin:0; padding-left:18px;}
+  .notes-box li{margin-bottom:6px;}
+
+  .trail{
+    position:relative;
+    padding-left:40px;
+  }
+  .trail::before{
+    content:"";
+    position:absolute;
+    left:14px; top:6px; bottom:6px;
+    width:0;
+    border-left:2px dashed var(--gold);
+  }
+  .day{
+    position:relative;
+    margin-bottom:64px;
+  }
+  .day:last-child{margin-bottom:0;}
+  .marker{
+    position:absolute;
+    left:-40px; top:0;
+    width:30px; height:30px;
+    border-radius:50%;
+    background:var(--rust);
+    border:2px solid var(--paper);
+    box-shadow:0 0 0 2px var(--gold);
+    color:var(--cream);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Bebas Neue', sans-serif;
+    font-size:14px;
+    cursor:pointer;
+    transition:background 0.2s;
+  }
+  .marker.checked{background:var(--fir);}
+  .day-head{margin-bottom:16px;}
+  .day-head .day-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.1em;
+    color:var(--rust);
+    text-transform:uppercase;
+    margin:0 0 4px;
+  }
+  .day-head h2{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:clamp(28px,5.5vw,40px);
+    margin:0;
+    color:var(--fir);
+    letter-spacing:0.02em;
+  }
+  .day-photo{
+    margin:16px 0 20px;
+    border:1px solid var(--line);
+    background:var(--cream);
+  }
+  .day-photo img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+  }
+  .day-photo figcaption{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.04em;
+    color:var(--slate);
+    padding:7px 12px;
+    border-top:1px solid var(--line);
+  }
+
+  .stop{
+    display:grid;
+    grid-template-columns:78px 1fr;
+    gap:14px;
+    padding:12px 0;
+    border-top:1px solid var(--line);
+  }
+  .stop:first-of-type{border-top:none;}
+  .stop-time{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--rust);
+    padding-top:2px;
+  }
+  .stop-body .stop-title{
+    font-weight:700;
+    font-size:15px;
+    margin:0 0 3px;
+  }
+  .stop-body .stop-addr{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--slate);
+    margin:0 0 4px;
+  }
+  .stop-body .stop-note{
+    font-size:13.5px;
+    color:#3a3a34;
+    line-height:1.55;
+    margin:0;
+  }
+  .stop-body .stop-note em{
+    color:var(--rust);
+    font-style:normal;
+    font-weight:600;
+  }
+  .stop-thumb{
+    float:left;
+    width:58px; height:58px;
+    object-fit:cover;
+    border-radius:4px;
+    margin:0 10px 6px 0;
+    border:1px solid var(--line);
+    box-shadow:0 2px 5px rgba(0,0,0,0.12);
+  }
+  .stop-body::after{content:""; display:table; clear:both;}
+  .branch{
+    clear:both;
+    margin-top:8px;
+    padding:10px 12px;
+    background:var(--cream);
+    border-left:3px solid var(--gold);
+    font-size:13px;
+    line-height:1.55;
+  }
+  .branch b{color:var(--fir);}
+
+  .logbook{
+    background:var(--fir);
+    color:var(--cream);
+    padding:56px 20px 60px;
+  }
+  .logbook-inner{
+    max-width:640px; margin:0 auto;
+    text-align:center;
+  }
+  .logbook .display{
+    font-size:clamp(26px,5vw,34px);
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+  .logbook p{
+    font-family:'Libre Franklin', sans-serif;
+    font-style:italic;
+    font-size:15.5px;
+    line-height:1.75;
+    color:rgba(241,233,216,0.9);
+  }
+  .logbook .sign{
+    margin-top:18px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:rgba(241,233,216,0.55);
+  }
+
+  @media (max-width:560px){
+    .stat{flex-basis:33%;}
+    .stop{grid-template-columns:62px 1fr;}
+    .stop-thumb{width:46px; height:46px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="topo"></div>
+  <div class="hero-top">
+    <div class="badge-ring"><span>DAD'S<br>LOGISTICS<br>DIVISION</span></div>
+    <p class="eyebrow">A Field Guide &middot; Est. 2026</p>
+    <h1 class="trip-title">SF <span style="color:var(--gold)">⇄</span> OREGON<small>Bay fog to Cascade pines</small></h1>
+    <p class="trip-dates">JULY 27 – 31, 2026 &middot; SANTA ANA → OAKLAND → SAN FRANCISCO → MARIN → PORTLAND → MT. HOOD → SANTA ANA</p>
+  </div>
+
+  <div class="hero-photo-wrap">
+    <figure class="postcard">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg?width=1400" alt="Golden Gate Bridge">
+      <div class="stamp">WED<br>JUL 29</div>
+      <figcaption><span>GOLDEN GATE BRIDGE</span><span>BATTERY EAST, SF</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="stat-strip">
+    <div class="stat"><span class="num">5</span><span class="label">Days</span></div>
+    <div class="stat"><span class="num">4</span><span class="label">Flights</span></div>
+    <div class="stat"><span class="num">2</span><span class="label">Rental Cars</span></div>
+    <div class="stat"><span class="num">3</span><span class="label">Nat'l Sites</span></div>
+    <div class="stat"><span class="num">∞</span><span class="label">Sea Lions</span></div>
+  </div>
+  <div class="hero-spacer"></div>
+</div>
+
+<nav class="signpost">
+  <div class="signpost-inner">
+    <a href="#logistics">LOGISTICS</a>
+    <a href="#d1">MON — HAIGHT</a>
+    <a href="#d2">TUE — ALCATRAZ</a>
+    <a href="#d3">WED — BRIDGE</a>
+    <a href="#d4">THU — PORTLAND</a>
+    <a href="#d5">FRI — CABIN</a>
+  </div>
+</nav>
+
+<section id="logistics">
+  <div class="section-head">
+    <span class="display">Logistics</span>
+    <span class="mono">Ready Before Wheels-Up</span>
+  </div>
+  <p class="section-sub">Everything booked, and what's still open, in one place. Tap a trail marker as you go.</p>
+  <div class="rule"></div>
+
+  <div class="card-grid">
+    <div class="lcard">
+      <h3><span class="icon">✈️</span> Flights</h3>
+      <ul>
+        <li>
+          <div class="row-title">Santa Ana → Oakland <span class="tag done">Booked</span></div>
+          <div class="row-detail">Mon Jul 27 &middot; 7:00 AM – 8:40 AM</div>
+        </li>
+        <li>
+          <div class="row-title">Oakland → Portland <span class="tag done">Booked</span></div>
+          <div class="row-detail">Wed Jul 29 &middot; 8:35 PM – 10:10 PM</div>
+        </li>
+        <li>
+          <div class="row-title">Portland → Las Vegas <span class="tag done">Booked</span></div>
+          <div class="row-detail">Fri Jul 31 &middot; 6:00 PM – 8:15 PM</div>
+        </li>
+        <li>
+          <div class="row-title">Las Vegas → Santa Ana <span class="tag done">Booked</span></div>
+          <div class="row-detail">Fri Jul 31 &middot; 9:15 PM – 10:25 PM</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="lcard">
+      <h3><span class="icon">🚗</span> Rental Cars</h3>
+      <ul>
+        <li>
+          <div class="row-title">National — Bay Area <span class="tag done">Booked</span></div>
+          <div class="row-detail">Pick up OAK Mon 9:15–9:45 AM &middot; return OAK Wed by 6:00 PM</div>
+        </li>
+        <li>
+          <div class="row-title">National — Portland <span class="tag done">Booked</span></div>
+          <div class="row-detail">Pick up PDX Wed 10:10 PM &middot; return PDX Fri by 5:00 PM</div>
+        </li>
+        <li>
+          <div class="row-title">Don't leave anything visible <span class="tag todo">Reminder</span></div>
+          <div class="row-detail">Especially Monday, before you reach Hotel Zephyr</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="lcard">
+      <h3><span class="icon">🏨</span> Sleeping</h3>
+      <ul>
+        <li>
+          <div class="row-title">Hotel Zephyr <span class="tag done">Booked</span></div>
+          <div class="row-detail">250 Beach St, San Francisco &middot; Mon–Wed nights</div>
+        </li>
+        <li>
+          <div class="row-title">The Mark Spencer Hotel <span class="tag done">Booked</span></div>
+          <div class="row-detail">409 SW 11th Ave, Portland &middot; Wed night</div>
+        </li>
+        <li>
+          <div class="row-title">Brightwood Airbnb <span class="tag done">Booked</span></div>
+          <div class="row-detail">20560 E Country Club Rd, Brightwood, OR &middot; Thu–Fri</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="lcard">
+      <h3><span class="icon">🎟️</span> Reservations</h3>
+      <ul>
+        <li>
+          <div class="row-title">Alcatraz ferry <span class="tag done">Booked</span></div>
+          <div class="row-detail">Tue Jul 28, 8:40 AM departure &middot; no return reservation needed</div>
+        </li>
+        <li>
+          <div class="row-title">Muir Woods — Bridge 2 Loop <span class="tag done">Booked</span></div>
+          <div class="row-detail">Wed Jul 29, 2:00–2:30 PM entry</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="notes-box">
+    <h3>Dad Notes</h3>
+    <ul>
+      <li><b>Monday parking:</b> Hotel Zephyr, then Kezar Stadium for the Haight Street walk.</li>
+      <li><b>Tuesday:</b> no car needed — Alcatraz and Pier 39 are both walkable from the hotel.</li>
+      <li><b>Wednesday:</b> street parking at Palace of Fine Arts, the Presidio, and Battery Spencer; reserved parking at Muir Woods.</li>
+      <li><b>Cable car rule:</b> attempt Monday evening; Tuesday is the backup if the line's too long.</li>
+      <li><b>Escape room rule:</b> only if everyone says yes.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <span class="display">Day by Day</span>
+    <span class="mono">Jul 27 – 31</span>
+  </div>
+  <p class="section-sub">Tap a marker to check off the day. No fixed schedule beats a good one you can actually change.</p>
+  <div class="rule"></div>
+
+  <div class="trail">
+
+    <div class="day" id="d1">
+      <div class="marker" onclick="this.classList.toggle('checked')">1</div>
+      <div class="day-head">
+        <p class="day-eyebrow">Monday &middot; July 27</p>
+        <h2>Haight Street &amp; Fisherman's Wharf</h2>
+      </div>
+      <figure class="day-photo">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ghirardelli_Square_1.jpg?width=1200" alt="Ghirardelli Square">
+        <figcaption>Ghirardelli Square, San Francisco</figcaption>
+      </figure>
+
+      <div class="stop">
+        <div class="stop-time">8:40 AM</div>
+        <div class="stop-body">
+          <p class="stop-title">Arrive Oakland (OAK)</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">9:15 AM</div>
+        <div class="stop-body">
+          <p class="stop-title">Bags &amp; car</p>
+          <p class="stop-note">Pick up luggage, then the National rental car.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">10:30 AM</div>
+        <div class="stop-body">
+          <p class="stop-title">Hotel Zephyr</p>
+          <p class="stop-addr">250 Beach St, San Francisco</p>
+          <p class="stop-note">Drop luggage with the bell desk, ask about early check-in. Car should be empty from here on.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">10:45 AM</div>
+        <div class="stop-body">
+          <p class="stop-title">Park at Kezar Stadium</p>
+          <p class="stop-addr">670 Kezar Dr, San Francisco</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">Noon–4 PM</div>
+        <div class="stop-body">
+          <img class="stop-thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Haight-Ashbury_street,_San_Francisco.jpg?width=300" alt="Haight Street">
+          <p class="stop-title">Walk Haight Street</p>
+          <p class="stop-note">Haight &amp; Ashbury &middot; Amoeba Music (1855 Haight St) &middot; vintage shopping &middot; lunch. <em>Optional:</em> Conservatory of Flowers, whenever everyone's ready.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">4–5 PM</div>
+        <div class="stop-body">
+          <p class="stop-title">Back to Hotel Zephyr</p>
+          <p class="stop-note">Check in, relax.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">5:30 PM</div>
+        <div class="stop-body">
+          <img class="stop-thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Buddyssmallpizza.jpg?width=300" alt="Detroit-style pizza">
+          <p class="stop-title">Square Pie Guys</p>
+          <p class="stop-addr">845 Beach St</p>
+          <p class="stop-note">Detroit-style pizza, right by Ghirardelli Square.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">After</div>
+        <div class="stop-body">
+          <img class="stop-thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Ghirardelli_Square_1.jpg?width=300" alt="Ghirardelli Square">
+          <p class="stop-title">Ghirardelli Square</p>
+          <p class="stop-note">Browse, ice cream if everyone wants it.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">6:45 PM</div>
+        <div class="stop-body">
+          <img class="stop-thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Cable_Car,_San_Francisco_(16652621064).jpg?width=300" alt="San Francisco cable car">
+          <p class="stop-title">Hyde &amp; Beach cable car turnaround</p>
+          <div class="branch"><b>If the line's reasonable:</b> ride the Powell-Hyde line round trip, get off at Hyde &amp; Lombard, walk down Lombard, then back to the hotel.<br><b>If the line's terrible:</b> skip it, walk Lombard anyway, ride Tuesday instead. Back to hotel by about 9 PM either way.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day" id="d2">
+      <div class="marker" onclick="this.classList.toggle('checked')">2</div>
+      <div class="day-head">
+        <p class="day-eyebrow">Tuesday &middot; July 28</p>
+        <h2>Alcatraz</h2>
+      </div>
+      <figure class="day-photo">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Alcatraz_Island_as_seen_from_the_East.jpg?width=1200" alt="Alcatraz Island">
+        <figcaption>Alcatraz Island, San Francisco Bay</figcaption>
+      </figure>
+
+      <div class="stop">
+        <div class="stop-time">7:45 AM</div>
+        <div class="stop-body"><p class="stop-title">Breakfast</p></div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">8:00 AM</div>
+        <div class="stop-body">
+          <p class="stop-title">Walk to Alcatraz Landing</p>
+          <p class="stop-addr">Pier 33, Suite 200</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">8:40 AM</div>
+        <div class="stop-body">
+          <img class="stop-thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Alcatraz_Island_as_seen_from_the_East.jpg?width=300" alt="Alcatraz Island">
+          <p class="stop-title">Depart for Alcatraz</p>
+          <p class="stop-note">No return reservation — come back whenever you're finished exploring.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">~Noon</div>
+        <div class="stop-body">
+          <img class="stop-thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Boudin,_San_Francisco_USA_-_panoramio.jpg?width=300" alt="Boudin Bakery">
+          <p class="stop-title">Lunch</p>
+          <p class="stop-note">Boudin Bakery Cafe (160 Jefferson St), or Pier 39 Boudin if that's where everyone is.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">Afternoon</div>
+        <div class="stop-body">
+          <img class="stop-thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sea_Lions_at_Pier_39.JPG?width=300" alt="Sea lions at Pier 39">
+          <p class="stop-title">PIER 39</p>
+          <p class="stop-addr">The Embarcadero</p>
+          <p class="stop-note">Sea lions, shopping, street performers, candy. Relax — no schedule.</p>
+          <div class="branch"><b>If everyone gets bored:</b> ride the cable car (if skipped Monday), an escape room, or head back to the hotel to recharge.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day" id="d3">
+      <div class="marker" onclick="this.classList.toggle('checked')">3</div>
+      <div class="day-head">
+        <p class="day-eyebrow">Wednesday &middot; July 29</p>
+        <h2>The Bridge &amp; the Redwoods</h2>
+      </div>
+      <figure class="day-photo">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Redwoods_in_Muir_Woods_2.JPG?width=1200" alt="Redwoods at Muir Woods">
+        <figcaption>Coast redwoods, Muir Woods National Monument</figcaption>
+      </figure>
+
+      <div class="stop">
+        <div class="stop-time">9:30 AM</div>
+        <div class="stop-body"><p class="stop-title">Breakfast</p></div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">10:30 AM</div>
+        <div class="stop-body">
+          <p class="stop-title">Check out</p>
+          <p class="stop-note">Leave luggage with Hotel Zephyr.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">10:45 AM</div>
+        <div class="stop-body">
+          <img class="stop-thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/San_Francisco_Palace_of_Fine_Arts_and_Fountain.JPG?width=300" alt="Palace of Fine Arts">
+          <p class="stop-title">Palace of Fine Arts</p>
+          <p class="stop-addr">3301 Lyon St &middot; 30–45 min</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">Noon</div>
+        <div class="stop-body">
+          <img class="stop-thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Crissy_Field.JPG?width=300" alt="Crissy Field">
+          <p class="stop-title">The Presidio</p>
+          <p class="stop-note">Tunnel Tops &amp; Crissy Field.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">12:45 PM</div>
+        <div class="stop-body">
+          <img class="stop-thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg?width=300" alt="Golden Gate Bridge">
+          <p class="stop-title">Cross the Golden Gate Bridge</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">1:00 PM</div>
+        <div class="stop-body">
+          <p class="stop-title">Battery Spencer</p>
+          <p class="stop-addr">Conzelman Rd, Sausalito &middot; 20–30 min</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">1:40 PM</div>
+        <div class="stop-body">
+          <p class="stop-title">Drive to Muir Woods National Monument</p>
+          <p class="stop-addr">Mill Valley</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">2:00 PM</div>
+        <div class="stop-body">
+          <img class="stop-thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Redwoods_in_Muir_Woods_2.JPG?width=300" alt="Muir Woods redwoods">
+          <p class="stop-title">Bridge 2 Loop <span class="tag paid" style="margin-left:6px;">Reserved</span></p>
+          <p class="stop-note">2:00–2:30 PM entry &middot; about one hour on the trail.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">4:00 PM</div>
+        <div class="stop-body">
+          <p class="stop-title">Early dinner in Marin</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">5:45 PM</div>
+        <div class="stop-body">
+          <p class="stop-title">Return to Hotel Zephyr</p>
+          <p class="stop-note">Collect luggage.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">6:00 PM</div>
+        <div class="stop-body">
+          <p class="stop-title">Drive to Oakland</p>
+          <p class="stop-note">Return the Bay Area National rental.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">8:35 PM</div>
+        <div class="stop-body">
+          <p class="stop-title">Fly Oakland → Portland</p>
+          <p class="stop-note">Lands 10:10 PM.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">10:10 PM</div>
+        <div class="stop-body">
+          <p class="stop-title">Pick up National rental car</p>
+          <p class="stop-addr">PDX</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">Tonight</div>
+        <div class="stop-body">
+          <p class="stop-title">The Mark Spencer Hotel</p>
+          <p class="stop-addr">409 SW 11th Ave, Portland</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day" id="d4">
+      <div class="marker" onclick="this.classList.toggle('checked')">4</div>
+      <div class="day-head">
+        <p class="day-eyebrow">Thursday</p>
+        <h2>Portland &amp; the Falls</h2>
+      </div>
+      <figure class="day-photo">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/PowellsBookstore.jpg?width=1200" alt="Powell's City of Books">
+        <figcaption>Powell's City of Books, Portland</figcaption>
+      </figure>
+
+      <div class="stop">
+        <div class="stop-time">9:00 AM</div>
+        <div class="stop-body">
+          <img class="stop-thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/PowellsBookstore.jpg?width=300" alt="Powell's City of Books">
+          <p class="stop-title">Powell's City of Books</p>
+          <p class="stop-addr">1005 W Burnside St &middot; plan 1.5–2 hrs</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">11:30 AM</div>
+        <div class="stop-body">
+          <p class="stop-title">Music Millennium</p>
+          <p class="stop-addr">3158 E Burnside St &middot; the legendary Portland record store</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">Afternoon</div>
+        <div class="stop-body">
+          <p class="stop-title">Pearl District</p>
+          <p class="stop-note">Vintage shopping, lunch.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">2:00 PM</div>
+        <div class="stop-body"><p class="stop-title">Drive east</p></div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">3:00 PM</div>
+        <div class="stop-body">
+          <img class="stop-thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Multnomah_Falls_Stream.jpg?width=300" alt="Multnomah Falls">
+          <p class="stop-title">Multnomah Falls</p>
+          <p class="stop-note">Pictures at Benson Bridge. <em>Optional:</em> Horsetail Falls or Wahkeena Falls.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">5:30 PM</div>
+        <div class="stop-body">
+          <p class="stop-title">Airbnb, Brightwood</p>
+          <p class="stop-addr">20560 E Country Club Rd, Brightwood, OR</p>
+          <p class="stop-note">Relax. Creek. Dark skies. Fire pit.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day" id="d5">
+      <div class="marker" onclick="this.classList.toggle('checked')">5</div>
+      <div class="day-head">
+        <p class="day-eyebrow">Friday &middot; July 31</p>
+        <h2>The Cabin, then Home</h2>
+      </div>
+      <figure class="day-photo">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Timberline_Lodge_from_the_Side.JPG?width=1200" alt="Timberline Lodge on Mount Hood">
+        <figcaption>Timberline Lodge, Mount Hood National Forest</figcaption>
+      </figure>
+
+      <div class="stop">
+        <div class="stop-time">Morning</div>
+        <div class="stop-body">
+          <p class="stop-title">Sleep in</p>
+          <p class="stop-note">Coffee. Enjoy the cabin.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">Optional</div>
+        <div class="stop-body">
+          <img class="stop-thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Timberline_Lodge_from_the_Side.JPG?width=300" alt="Timberline Lodge">
+          <p class="stop-title">Timberline Lodge</p>
+          <p class="stop-addr">27500 E Timberline Rd, Government Camp &middot; 45 min from the Airbnb</p>
+          <p class="stop-note">Great views of Mount Hood.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">Lunch</div>
+        <div class="stop-body">
+          <p class="stop-title">Blue Moon Diner</p>
+          <p class="stop-addr">20167 SW Tualatin Valley Hwy, Beaverton</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">After lunch</div>
+        <div class="stop-body">
+          <p class="stop-title">If time permits</p>
+          <p class="stop-note">Drive by Nike World Headquarters, browse Beaverton.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">5:00 PM</div>
+        <div class="stop-body">
+          <p class="stop-title">Return rental car</p>
+          <p class="stop-addr">PDX</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">6:00 PM</div>
+        <div class="stop-body">
+          <p class="stop-title">Fly Portland → Las Vegas</p>
+          <p class="stop-note">Lands 8:15 PM.</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-time">9:15 PM</div>
+        <div class="stop-body">
+          <p class="stop-title">Fly Las Vegas → Santa Ana</p>
+          <p class="stop-note">Home by 10:25 PM.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="logbook">
+  <div class="logbook-inner">
+    <p class="display">Ranger's Note</p>
+    <p>"The coldest winter I ever spent was a summer in San Francisco."</p>
+    <p class="sign">— Often attributed to Mark Twain (pack a jacket)</p>
+  </div>
+</div>
+
+</body>
+</html>
